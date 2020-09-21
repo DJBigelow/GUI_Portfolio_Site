@@ -18,6 +18,7 @@ namespace Portfolio.WASM.Client.Pages
 
         }
 
+        [Parameter]
         public IEnumerable<Project> Projectlist { get; set; }
 
     }

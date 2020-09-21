@@ -1,13 +1,22 @@
 ﻿<h3>Projects</h3>
 
+@page "/Projects"
+
 <table class="table">
     <thead>
         <tr>Title</tr><tr>Requirement</tr><tr>Design</tr><tr>Completed On</tr>
     </thead>
     <tbody>
-        @*@foreach(Portfolio.Shared.Models.Project project in Projectlist)
+        @foreach(Portfolio.Shared.Models.Project project in Projectlist)
         {
-            <tr><td></td></tr>
-        }*@
+            <tr>
+                <td>@project.Title</td>
+                <td>@project.Requirement</td>
+                <td>@project.Design</td>
+                <td>@project.CompletionDate</td>
+            </tr>
+        }
     </tbody>
 </table>
+
+

@@ -15,6 +15,6 @@ namespace Portfolio.Shared.Models
 
         public string Design { get; set; }
 
-        DateTime CompletionDate { get; set; }
+        public DateTime CompletionDate { get; set; }
     }
 }
