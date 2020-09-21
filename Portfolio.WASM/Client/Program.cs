@@ -19,7 +19,7 @@ namespace Portfolio.WASM.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>( client => client.BaseAddress = new Uri("https://localhost:5000/"));
+            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>( client => client.BaseAddress = new Uri("https://localhost:5005/"));
 
             await builder.Build().RunAsync();
         }

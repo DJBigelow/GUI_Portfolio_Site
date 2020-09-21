@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Portfolio.Shared.Models;
+using Portfolio.WASM.Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,16 @@ namespace Portfolio.WASM.Client.Pages
     public partial class Projects
     {
         [Inject]
-        public HttpClient HttpClient { get; set; }
+        public IProjectDataService ProjectDataService{ get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-
+            ProjectList = await ProjectDataService.GetProjectsAsync();
+             
         }
 
         [Parameter]
-        public IEnumerable<Project> Projectlist { get; set; }
+        public IEnumerable<Project> ProjectList { get; set; }
 
     }
 }

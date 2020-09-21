@@ -1,22 +1,38 @@
 ﻿<h3>Projects</h3>
 
-@page "/Projects"
+@page "/projects"
 
 <table class="table">
     <thead>
-        <tr>Title</tr><tr>Requirement</tr><tr>Design</tr><tr>Completed On</tr>
+        <tr>
+            <td>Title</td>
+            <td>Requirement</td>
+            <td>Design</td>
+            <td>Completed On</td>
+        </tr>
     </thead>
     <tbody>
-        @foreach(Portfolio.Shared.Models.Project project in Projectlist)
+        @if (ProjectList != null)
         {
-            <tr>
-                <td>@project.Title</td>
-                <td>@project.Requirement</td>
-                <td>@project.Design</td>
-                <td>@project.CompletionDate</td>
-            </tr>
+            foreach (Portfolio.Shared.Models.Project project in ProjectList)
+            {
+                <tr>
+                    <td> <a href="@($"/projects/{project.ID}")">@project.Title</a> </td>
+                    <td>@project.Requirement</td>
+                    <td>@project.Design</td>
+                    <td>@project.CompletionDate</td>
+                    <td>
+                    </td>
+
+                </tr>
+            }
         }
+
     </tbody>
+
 </table>
+
+<a href="@($"/projects/new")">New Project</a>
+
 
 

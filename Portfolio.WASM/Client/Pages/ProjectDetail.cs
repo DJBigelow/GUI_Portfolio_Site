@@ -4,27 +4,22 @@ using Portfolio.WASM.Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Portfolio.WASM.Client.Pages
 {
-    public partial class AddProject
+    public partial class ProjectDetail
     {
         [Inject]
         public IProjectDataService ProjectDataService { get; set; }
 
-        [Parameter]
-        public Project Project { get; set; } = new Project();
+        public int ProjectID { get; set; }
 
-        public AddProject()
+        public Project Project { get; set; }
+
+        protected override async Task OnInitializedAsync()
         {
-
-        }
-
-        public async void PostProject()
-        {
-            await ProjectDataService.AddProjectAsync(Project);
+            Project = await ProjectDataService.GetProjectAsync(ProjectID);
         }
     }
 }
