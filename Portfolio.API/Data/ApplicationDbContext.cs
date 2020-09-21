@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Portfolio.API.Models;
+using Portfolio.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Portfolio.API.Data
+namespace Portfolio.Shared.Data
 {
     public class ApplicationDbContext : DbContext
     {

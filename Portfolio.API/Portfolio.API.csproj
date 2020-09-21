@@ -14,5 +14,9 @@
     <PackageReference Include="System.ComponentModel.EventBasedAsync" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Portfolio.WASM\Shared\Portfolio.WASM.Shared.csproj" />
+  </ItemGroup>
+
 
 </Project>

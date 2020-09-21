@@ -10,9 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Portfolio.API.Data;
+using Portfolio.Shared.Data;
 
-namespace Portfolio.API
+namespace Portfolio.Shared
 {
     public class Startup
     {
