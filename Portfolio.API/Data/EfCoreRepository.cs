@@ -25,7 +25,9 @@ namespace Portfolio.Shared.Data
 
         public async Task<Project> GetProjectAsync(int projectID)
         {
-            return await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
+            var project = await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
+            //return await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
+            return project;
         }
 
         public async Task AddProjectAsync(Project project)
@@ -33,9 +35,10 @@ namespace Portfolio.Shared.Data
             await context.AddAsync(project);
             await context.SaveChangesAsync();
         }
-        public async Task DeleteProjectAsync(Project project)
+        public async Task DeleteProjectAsync(int projectID)
         {            
-            context.Remove(project);
+
+            context.Remove(await GetProjectAsync(projectID));
             await context.SaveChangesAsync();
         }
 

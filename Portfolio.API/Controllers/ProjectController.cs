@@ -20,34 +20,40 @@ namespace Portfolio.Shared.Controllers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpPost]
-        public async Task AddProject(Project project)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddProject([FromBody]Project project)
         {
             await repository.AddProjectAsync(project);
+
+            return NoContent();
         }
 
-        [HttpDelete]
-        public async Task DeleteProject(Project project)
+        [HttpDelete("[action]/{projectID}")]
+        public async Task<IActionResult> DeleteProject(int projectID)
         {
-            await repository.DeleteProjectAsync(project);
+            await repository.DeleteProjectAsync(projectID);
+
+            return NoContent();
         }
 
-        [HttpPut]
-        public async Task UpdateProject(Project project)
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateProject(Project project)
         {
             await repository.UpdateProjectAsync(project);
+
+            return NoContent();
         }
 
-        [HttpGet]
-        public IEnumerable<Project> GetProjects()
+        [HttpGet("[action]")]
+        public IActionResult GetProjects()
         {
-            return repository.GetProjects();
+            return Ok(repository.GetProjects());
         }
 
-        [HttpGet]
-        public async Task<Project> GetProject(int projectID)
+        [HttpGet("[action]/{projectID}")]
+        public async Task<IActionResult> GetProject(int projectID)
         {
-            return await repository.GetProjectAsync(projectID);
+            return Ok(await repository.GetProjectAsync(projectID));
         }
 
     }

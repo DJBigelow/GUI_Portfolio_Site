@@ -1,22 +1,22 @@
-﻿using Portfolio.Shared.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Portfolio.Shared.Models;
 
-namespace Portfolio.Shared.Data
+namespace Portfolio.App.Services
+
 {
-    public interface IRepository 
+    public interface IProjectDataService
     {
-        public IEnumerable<Project> GetProjects();
-       
+        public Task<IEnumerable<Project>> GetProjectsAsync();
+
         public Task<Project> GetProjectAsync(int projectID);
-        
+
         public Task AddProjectAsync(Project project);
 
         public Task DeleteProjectAsync(int projectID);
 
         public Task UpdateProjectAsync(Project project);
-
     }
 }

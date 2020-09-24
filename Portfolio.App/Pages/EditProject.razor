@@ -1,0 +1,35 @@
+﻿@page "/projects/edit/{ProjectID:int}"
+
+<h3>EditProject</h3>
+
+<EditForm Model="@Project" OnValidSubmit="@SubmitChanges">
+    <p>
+        <label>
+            Title <br />
+            <InputText @bind-Value="Title" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Requirement <br />
+            <InputTextArea @bind-Value="Requirement" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Design <br />
+            <InputTextArea @bind-Value="Design" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Date of Completion <br />
+            <InputDate @bind-Value="CompletionDate" />
+        </label>
+    </p>
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+<button type="button" @onclick="@DiscardChanges">Discard Changes</button>
