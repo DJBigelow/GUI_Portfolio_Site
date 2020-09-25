@@ -1,6 +1,6 @@
 using System;
 
-namespace Portfolio.App.Data
+namespace Portfolio.WASM.Data
 {
     public class WeatherForecast
     {

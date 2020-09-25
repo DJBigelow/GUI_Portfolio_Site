@@ -9,10 +9,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Portfolio.App.Data;
-using Portfolio.App.Services;
+using Portfolio.WASM.Data;
+using Portfolio.WASM.Services;
 
-namespace Portfolio.App
+namespace Portfolio.WASM
 {
     public class Startup
     {
