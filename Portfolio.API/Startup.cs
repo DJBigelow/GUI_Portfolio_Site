@@ -29,6 +29,13 @@ namespace Portfolio.Shared
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(convertUrlConnectionString(Configuration["DATABASE_URL"])));
             services.AddControllers();
             services.AddTransient<IRepository, EfCoreRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +47,8 @@ namespace Portfolio.Shared
             }
 
             app.UseRouting();
+
+            app.UseCors("Open");
 
             app.UseAuthorization();
 

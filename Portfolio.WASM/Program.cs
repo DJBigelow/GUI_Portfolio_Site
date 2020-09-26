@@ -20,7 +20,7 @@ namespace Portfolio.WASM
 
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri("http://localhost:5005/"));
-
+            
 
             await builder.Build().RunAsync();
         }
