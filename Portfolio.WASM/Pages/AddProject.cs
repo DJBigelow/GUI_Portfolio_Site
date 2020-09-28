@@ -29,7 +29,7 @@ namespace Portfolio.WASM.Pages
         {
             await ProjectDataService.AddProjectAsync(Project);
 
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("");
         }
     }
 }
