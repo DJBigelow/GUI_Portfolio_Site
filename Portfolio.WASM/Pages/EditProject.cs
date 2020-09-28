@@ -44,12 +44,12 @@ namespace Portfolio.WASM.Pages
             Project.CompletionDate = CompletionDate;
 
             await ProjectDataService.UpdateProjectAsync(Project);
-            NavigationManager.NavigateTo($"GUI_Portfolio_Site/projects/detail/{Project.ID}");
+            NavigationManager.NavigateTo($"/projects/detail/{Project.ID}");
         }
 
         public void DiscardChanges()
         {
-            NavigationManager.NavigateTo($"GUI_Portfolio_Site/projects/detail/{Project.ID}");
+            NavigationManager.NavigateTo($"/projects/detail/{Project.ID}");
         }
 
 

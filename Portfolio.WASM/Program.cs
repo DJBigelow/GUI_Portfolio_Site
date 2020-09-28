@@ -19,7 +19,7 @@ namespace Portfolio.WASM
             builder.RootComponents.Add<App>("app");
 
             //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri("http://localhost:5005/"));
+            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri("http://djbportfolio.herokuapp.com/"));
             
 
             await builder.Build().RunAsync();

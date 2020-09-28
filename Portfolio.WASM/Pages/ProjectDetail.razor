@@ -1,4 +1,4 @@
-﻿@page "/GUI_Portfolio_Site/projects/detail/{ProjectID:int}"
+﻿@page "/projects/detail/{ProjectID:int}"
 
 
 
@@ -39,7 +39,7 @@
 </div>
 
 <div>
-    <a href=@($"/GUI_Portfolio_Site/projects/edit/{Project.ID}")>Edit</a>
+    <a href=@($"/projects/edit/{Project.ID}")>Edit</a>
     <button type="button" @onclick="@DeleteProject">Delete</button>
 </div>
 
