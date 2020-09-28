@@ -22,32 +22,32 @@ namespace Portfolio.WASM.Services
         public async Task<IEnumerable<Project>> GetProjectsAsync()
         {
             return await JsonSerializer.DeserializeAsync<IEnumerable<Project>>(
-                 await httpClient.GetStreamAsync($"api/project/getprojects"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                 await httpClient.GetStreamAsync("api/project/getprojects"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task<Project> GetProjectAsync(int projectID)
         {
             return await JsonSerializer.DeserializeAsync<Project>(
-                await httpClient.GetStreamAsync($"api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                await httpClient.GetStreamAsync("api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task AddProjectAsync(Project project)
         {
             var projectJson = new StringContent(JsonSerializer.Serialize(project), Encoding.UTF8, "application/json");
 
-            await httpClient.PostAsync($"api/project/addproject", projectJson);
+            await httpClient.PostAsync("api/project/addproject", projectJson);
         }
 
         public async Task DeleteProjectAsync(int projectID)
         {
-            await httpClient.DeleteAsync($"api/project/deleteproject/{projectID}");
+            await httpClient.DeleteAsync("api/project/deleteproject/{projectID}");
         }
 
         public async Task UpdateProjectAsync(Project project)
         {
             var projectJson = new StringContent(JsonSerializer.Serialize(project), Encoding.UTF8, "application/json");
 
-            await httpClient.PutAsync($"api/project/updateproject", projectJson);
+            await httpClient.PutAsync("api/project/updateproject", projectJson);
         }
     }
 }
