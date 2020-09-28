@@ -34,7 +34,7 @@ namespace Portfolio.WASM.Pages
         {
             await ProjectDataService.DeleteProjectAsync(Project.ID);
 
-            NavigationManager.NavigateTo($"/");
+            NavigationManager.NavigateTo("/");
         }
     }
 }
