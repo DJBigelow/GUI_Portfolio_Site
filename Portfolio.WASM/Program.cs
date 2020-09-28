@@ -18,7 +18,7 @@ namespace Portfolio.WASM
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri("http://djbportfolio.herokuapp.com/"));
+            builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri("https://djbportfolio.herokuapp.com/"));
             
 
             await builder.Build().RunAsync();
