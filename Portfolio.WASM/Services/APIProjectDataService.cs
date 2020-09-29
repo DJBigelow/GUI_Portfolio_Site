@@ -28,7 +28,7 @@ namespace Portfolio.WASM.Services
         public async Task<Project> GetProjectAsync(int projectID)
         {
             return await JsonSerializer.DeserializeAsync<Project>(
-                await httpClient.GetStreamAsync("api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                await httpClient.GetStreamAsync($"api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task AddProjectAsync(Project project)
@@ -40,7 +40,7 @@ namespace Portfolio.WASM.Services
 
         public async Task DeleteProjectAsync(int projectID)
         {
-            await httpClient.DeleteAsync("api/project/deleteproject/{projectID}");
+            await httpClient.DeleteAsync($"api/project/deleteproject/{projectID}");
         }
 
         public async Task UpdateProjectAsync(Project project)
