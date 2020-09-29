@@ -58,21 +58,21 @@ namespace Portfolio.Shared.Controllers
 
 
 
-        [HttpPost("[action]/{projectID}/{framework}")]
+        [HttpPut("[action]/{projectID}/{framework}")]
         public async Task<IActionResult> AddFramework(int projectID, string framework)
         {
             await repository.AssociateProjectAndFramework(projectID, framework);
             return NoContent();
         }
 
-        [HttpPost("[action]/{projectID}/{language}")]
+        [HttpPut("[action]/{projectID}/{language}")]
         public async Task<IActionResult> AddLanguage(int projectID, string language)
         {
             await repository.AssociateProjectAndLanguage(projectID, language);
             return NoContent();
         }
 
-        [HttpPost("[action]/{projectID}/{platform}")]
+        [HttpPut("[action]/{projectID}/{platform}")]
         public async Task<IActionResult> AddPlatform(int projectID, string platform)
         {
             await repository.AssociateProjectAndPlatform(projectID, platform);

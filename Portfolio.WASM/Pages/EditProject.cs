@@ -26,6 +26,14 @@ namespace Portfolio.WASM.Pages
         public string Design { get; set; }
         public DateTime CompletionDate { get; set; }
 
+
+        public string FrameworkName { get; set; }
+        public string PlatformName { get; set; }
+        public string LanguageName { get; set; }
+
+
+
+
         protected override async Task OnInitializedAsync()
         {
             Project = await ProjectDataService.GetProjectAsync(ProjectID);
@@ -52,6 +60,21 @@ namespace Portfolio.WASM.Pages
             NavigationManager.NavigateTo($"projects/detail/{Project.ID}");
         }
 
+
+        public void AddFramework()
+        {
+
+        }
+
+        public void AddLanguage()
+        {
+
+        }
+
+        public void AddPlatform()
+        {
+
+        }
 
     }
 }

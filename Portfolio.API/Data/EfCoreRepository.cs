@@ -26,7 +26,6 @@ namespace Portfolio.Shared.Data
         public async Task<Project> GetProjectAsync(int projectID)
         {
             var project = await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
-            //return await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
             return project;
         }
 

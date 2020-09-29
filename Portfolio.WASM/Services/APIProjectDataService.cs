@@ -49,5 +49,21 @@ namespace Portfolio.WASM.Services
 
             await httpClient.PutAsync("api/project/updateproject", projectJson);
         }
+
+
+        public async Task AddFramework(int projectID, string frameworkName)
+        {
+            await httpClient.PutAsync($"api/project/addframework/{projectID}/{frameworkName}", null);
+        }
+
+        public async Task AddLanguage(int projectID, string languageName)
+        {
+            await httpClient.PutAsync($"api/project/addframework/{projectID}/{languageName}", null);
+        }
+
+        public async Task AddPlatform(int projectID, string platformName)
+        {
+            await httpClient.PutAsync($"api/project/addframework/{projectID}/{platformName}", null);
+        }
     }
 }

@@ -32,10 +32,35 @@
 
 </EditForm>
 
-<EditForm Model="@Project">
+
+
+
+<EditForm Model="@Project" OnValidSubmit="@AddFramework">
     <label>
-        Add Categot
+        Add Framework <br />
+        <InputText @bind-Value="FrameworkName"></InputText>
     </label>
+    <button type="submit">Submit</button>
 </EditForm>
+
+
+<EditForm Model="@Project" OnValidSubmit="@AddLanguage">
+    <label>
+        Add Language <br />
+        <InputText @bind-Value="LanguageName"></InputText>
+    </label>
+    <button type="submit">Submit</button>
+</EditForm>
+
+
+<EditForm Model="@Project" OnValidSubmit="@AddPlatform">
+    <label>
+        Add Platform <br />
+        <InputText @bind-Value="PlatformName"></InputText>
+    </label>
+    <button type="submit">Submit</button>
+</EditForm>
+
+
 
 <button type="button" @onclick="@DiscardChanges">Discard Changes</button>
