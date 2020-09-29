@@ -21,7 +21,7 @@ namespace Portfolio.Shared.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddProject([FromBody]Project project)
+        public async Task<IActionResult> AddProject([FromBody] Project project)
         {
             await repository.AddProjectAsync(project);
 
@@ -56,5 +56,27 @@ namespace Portfolio.Shared.Controllers
             return Ok(await repository.GetProjectAsync(projectID));
         }
 
+
+
+        [HttpPost("[action]/{projectID}/{framework}")]
+        public async Task<IActionResult> AddFramework(int projectID, string framework)
+        {
+            await repository.AssociateProjectAndFramework(projectID, framework);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{projectID}/{language}")]
+        public async Task<IActionResult> AddLanguage(int projectID, string language)
+        {
+            await repository.AssociateProjectAndLanguage(projectID, language);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{projectID}/{platform}")]
+        public async Task<IActionResult> AddPlatform(int projectID, string platform)
+        {
+            await repository.AssociateProjectAndPlatform(projectID, platform);
+            return NoContent();
+        }
     }
 }

@@ -22,5 +22,17 @@ namespace Portfolio.Shared.Models
 
         [JsonPropertyName("completiondate")]
         public DateTime CompletionDate { get; set; }
+
+
+
+        [JsonPropertyName("frameworks")]
+        public IList<ProjectFramework> ProjectFrameworks { get; set; }
+
+        [JsonPropertyName("languages")]
+        public IList<ProjectLanguage> ProjectLanguages {get; set;}
+
+        [JsonPropertyName("platforms")]
+        public IList<ProjectPlatform> ProjectPlatforms {get; set;}
+
     }
 }
