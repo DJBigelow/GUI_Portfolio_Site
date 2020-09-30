@@ -16,6 +16,11 @@ namespace Portfolio.WASM.Services
             await Task.Run(() => projects.Add(project));
         }
 
+        public Task AssociateProjectWithCategory(AssociationRequest associationRequest)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteProjectAsync(int projectID)
         {
             var project = projects[projectID];

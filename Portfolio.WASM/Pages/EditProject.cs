@@ -26,6 +26,14 @@ namespace Portfolio.WASM.Pages
         public string Design { get; set; }
         public DateTime CompletionDate { get; set; }
 
+
+        public string Framework { get; set; }
+        public string Language{ get; set; }
+        public string Platform { get; set; }
+
+      
+
+
         protected override async Task OnInitializedAsync()
         {
             Project = await ProjectDataService.GetProjectAsync(ProjectID);
@@ -53,5 +61,23 @@ namespace Portfolio.WASM.Pages
         }
 
 
+
+        public async Task AddFramework()
+        {
+            var associationRequest = new AssociationRequest() { CategoryType = Categories.FRAMEWORK, Category = Framework, ProjectID = ProjectID };
+            await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        }
+
+        public async Task AddLanguage()
+        {
+            var associationRequest = new AssociationRequest() { CategoryType = Categories.LANGUAGE, Category = Language, ProjectID = ProjectID };
+            await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        }
+
+        public async Task AddPlatform()
+        {
+            var associationRequest = new AssociationRequest() { CategoryType = Categories.PLATFORM, Category = Platform, ProjectID = ProjectID };
+            await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        }
     }
 }

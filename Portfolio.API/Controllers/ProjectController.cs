@@ -20,6 +20,7 @@ namespace Portfolio.Shared.Controllers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProject([FromBody] Project project)
         {
@@ -27,6 +28,7 @@ namespace Portfolio.Shared.Controllers
 
             return NoContent();
         }
+
 
         [HttpDelete("[action]/{projectID}")]
         public async Task<IActionResult> DeleteProject(int projectID)
@@ -36,6 +38,7 @@ namespace Portfolio.Shared.Controllers
             return NoContent();
         }
 
+
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProject(Project project)
         {
@@ -43,6 +46,8 @@ namespace Portfolio.Shared.Controllers
 
             return NoContent();
         }
+
+
 
         [HttpGet("[action]")]
         public IActionResult GetProjects()
@@ -55,6 +60,7 @@ namespace Portfolio.Shared.Controllers
         {
             return Ok(await repository.GetProjectAsync(projectID));
         }
+
 
 
 
@@ -76,6 +82,27 @@ namespace Portfolio.Shared.Controllers
         public async Task<IActionResult> AddPlatform(int projectID, string platform)
         {
             await repository.AssociateProjectAndPlatform(projectID, platform);
+            return NoContent();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Associate(AssociationRequest associationRequest)
+        {
+            switch (associationRequest.CategoryType)
+            {
+                case Categories.FRAMEWORK:
+                    await repository.AssociateProjectAndFramework(associationRequest.ProjectID, associationRequest.Category);
+                    break;
+
+                case Categories.LANGUAGE:
+                    await repository.AssociateProjectAndLanguage(associationRequest.ProjectID, associationRequest.Category);
+                    break;
+
+                case Categories.PLATFORM:
+                    await repository.AssociateProjectAndPlatform(associationRequest.ProjectID, associationRequest.Category);
+                    break;
+            }
+
             return NoContent();
         }
     }

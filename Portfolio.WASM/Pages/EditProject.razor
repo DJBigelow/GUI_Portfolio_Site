@@ -2,6 +2,7 @@
 
 <h3>EditProject</h3>
 
+@* Project Form *@
 <EditForm Model="@Project" OnValidSubmit="@SubmitChanges">
     <p>
         <label>
@@ -32,10 +33,27 @@
 
 </EditForm>
 
-<EditForm Model="@Project">
+
+@* Categories *@
+<EditForm Model="@Project" OnValidSubmit="AddFramework">
     <label>
-        Add Categot
+        Add Framework <InputText @bind-Value="Framework" />
     </label>
+    <button type="submit">Add</button>
+</EditForm>
+
+<EditForm Model="@Project" OnValidSubmit="AddLanguage">
+    <label>
+        Add Language <InputText @bind-Value="Language" />
+    </label>
+    <button type="submit">Add</button>
+</EditForm>
+
+<EditForm Model="@Project" OnValidSubmit="AddPlatform">
+    <label>
+        Add Platform <InputText @bind-Value="Platform" />
+    </label>
+    <button type="submit">Add</button>
 </EditForm>
 
 <button type="button" @onclick="@DiscardChanges">Discard Changes</button>

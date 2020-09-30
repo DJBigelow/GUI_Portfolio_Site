@@ -18,5 +18,7 @@ namespace Portfolio.WASM.Services
         public Task DeleteProjectAsync(int projectID);
 
         public Task UpdateProjectAsync(Project project);
+
+        public Task AssociateProjectWithCategory(AssociationRequest associationRequest);
     }
 }

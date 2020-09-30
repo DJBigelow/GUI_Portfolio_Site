@@ -49,5 +49,13 @@ namespace Portfolio.WASM.Services
 
             await httpClient.PutAsync("api/project/updateproject", projectJson);
         }
+
+
+        public async Task AssociateProjectWithCategory(AssociationRequest associationRequest)
+        {
+            var json = new StringContent(JsonSerializer.Serialize(associationRequest), Encoding.UTF8, "application/json");
+
+            await httpClient.PostAsync("api/project/associate", json);
+        }
     }
 }

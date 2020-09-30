@@ -25,7 +25,11 @@ namespace Portfolio.Shared.Data
 
         public async Task<Project> GetProjectAsync(int projectID)
         {
-            var project = await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
+            var project = await context.Projects
+                .Include(p => p.ProjectFrameworks).ThenInclude(pf => pf.Framework)
+                .Include(p => p.ProjectLanguages).ThenInclude(pl => pl.Language)
+                .Include(p => p.ProjectPlatforms).ThenInclude(pp => pp.Platform)
+                .FirstOrDefaultAsync(p => p.ID == projectID);
             //return await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
             return project;
         }
@@ -104,5 +108,35 @@ namespace Portfolio.Shared.Data
             context.ProjectPlatforms.Add(pp);
             await context.SaveChangesAsync();
         }
+
+
+        //public async Task Associate(AssociationRequest associationRequest)
+        //{
+        //    switch(associationRequest.CategoryType)
+        //    {
+        //        case Categories.FRAMEWORK:
+        //            Framework framework = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Frameworks, f => f.Name == associationRequest.Category);
+
+        //            if (framework == null)
+        //            {
+        //                framework = new Framework() { Name = associationRequest.Category };
+        //                context.Frameworks.Add(framework);
+        //                await context.SaveChangesAsync();
+        //            }
+
+        //            Project project = await GetProjectAsync(associationRequest.ProjectID);
+        //            ProjectFramework pf = new ProjectFramework() { Framework = framework, Project = project };
+
+        //            context.ProjectFrameworks.Add(pf);
+        //            await context.SaveChangesAsync();
+        //            break;
+
+        //        case Categories.LANGUAGE:
+        //            break;
+
+        //        case Categories.PLATFORM:
+        //            break;
+        //    }
+        //}
     }
 }
