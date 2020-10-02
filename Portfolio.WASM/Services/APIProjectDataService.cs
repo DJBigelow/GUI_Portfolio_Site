@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Net.Http;
 using Portfolio.Shared.Models;
 using System.Text;
+using Portfolio.Shared;
 
 namespace Portfolio.WASM.Services
 {
@@ -27,8 +28,13 @@ namespace Portfolio.WASM.Services
 
         public async Task<Project> GetProjectAsync(int projectID)
         {
-            return await JsonSerializer.DeserializeAsync<Project>(
+            ProjectViewModel projectVM = await JsonSerializer.DeserializeAsync<ProjectViewModel>(
                 await httpClient.GetStreamAsync($"api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+
+            //Pick up work here
+            Project project = new Project();
+
+            return project;
         }
 
         public async Task AddProjectAsync(Project project)

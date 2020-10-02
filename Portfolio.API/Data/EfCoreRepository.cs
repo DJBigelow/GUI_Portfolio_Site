@@ -11,17 +11,16 @@ namespace Portfolio.Shared.Data
     {
         private readonly ApplicationDbContext context;
 
+        public IEnumerable<Project> Projects => context.Projects;
+
         public EfCoreRepository(ApplicationDbContext context)
         {
             this.context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        
 
-        public IEnumerable<Project> GetProjects()
-        {
-            return context.Projects;
-        }
+
+        public IEnumerable<Project> GetProjects() => context.Projects;
 
         public async Task<Project> GetProjectAsync(int projectID)
         {

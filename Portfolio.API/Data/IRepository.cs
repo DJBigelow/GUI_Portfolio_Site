@@ -9,6 +9,8 @@ namespace Portfolio.Shared.Data
     public interface IRepository 
     {
         public IEnumerable<Project> GetProjects();
+
+        public IEnumerable<Project> Projects { get; }
        
         public Task<Project> GetProjectAsync(int projectID);
         

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Portfolio.Shared.Data;
 using Portfolio.Shared.Models;
 
@@ -52,13 +53,16 @@ namespace Portfolio.Shared.Controllers
         [HttpGet("[action]")]
         public IActionResult GetProjects()
         {
-            return Ok(repository.GetProjects());
+
+            return Ok(repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList());
         }
 
         [HttpGet("[action]/{projectID}")]
         public async Task<IActionResult> GetProject(int projectID)
         {
-            return Ok(await repository.GetProjectAsync(projectID));
+            var project = await repository.GetProjectAsync(projectID);
+            var projectVM = new ProjectViewModel(project);
+            return Ok(projectVM);
         }
 
 
