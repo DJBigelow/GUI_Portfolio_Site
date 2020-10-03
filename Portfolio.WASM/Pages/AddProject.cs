@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Portfolio.Shared;
 using Portfolio.Shared.Models;
 using Portfolio.WASM.Services;
 using System;
@@ -18,7 +19,7 @@ namespace Portfolio.WASM.Pages
         NavigationManager NavigationManager { get; set; }
 
         [Parameter]
-        public Project Project { get; set; } = new Project();
+        public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
 
         public AddProject()
         {
@@ -27,7 +28,7 @@ namespace Portfolio.WASM.Pages
 
         public async void PostProject()
         {
-            await ProjectDataService.AddProjectAsync(Project);
+            await ProjectDataService.AddProjectAsync(ProjectViewModel);
 
             NavigationManager.NavigateTo("");
         }

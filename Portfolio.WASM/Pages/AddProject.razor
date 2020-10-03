@@ -2,30 +2,30 @@
 
 <h3>Add Project</h3>
 
-<EditForm Model="@Project" OnValidSubmit="@PostProject">
+<EditForm Model="@ProjectViewModel" OnValidSubmit="@PostProject">
     <p>
         <label>
             Title <br />
-            <InputText @bind-Value="Project.Title" />
+            <InputText @bind-Value="ProjectViewModel.Title" />
         </label>
     </p>
 
     <p>
         <label>
             Requirement <br />
-            <InputTextArea @bind-Value="Project.Requirement" />
+            <InputTextArea @bind-Value="ProjectViewModel.Requirement" />
         </label>
     </p>
     <p>
         <label>
             Design <br />
-            <InputTextArea @bind-Value="Project.Design" />
+            <InputTextArea @bind-Value="ProjectViewModel.Design" />
         </label>
     </p>
     <p>
         <label>
             Date of Completion <br />
-            <InputDate @bind-Value="Project.CompletionDate" />
+            <InputDate @bind-Value="ProjectViewModel.CompletionDate" />
         </label>
     </p>
     <button type="submit">Submit</button>

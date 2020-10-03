@@ -34,5 +34,35 @@ namespace Portfolio.Shared.Models
         [JsonPropertyName("platforms")]
         public IList<ProjectPlatform> ProjectPlatforms {get; set;}
 
+
+        public Project() { }
+
+        public Project(ProjectViewModel vm)
+        {
+            ID = vm.ID;
+            Title = vm.Title;
+            Requirement = vm.Requirement;
+            Design = vm.Design;
+            CompletionDate = vm.CompletionDate;
+
+            ProjectFrameworks = new List<ProjectFramework>();
+            foreach(Framework framework in vm.Frameworks ?? new List<Framework>())
+            {
+                ProjectFrameworks.Add(new ProjectFramework() { Framework = framework });
+            }
+
+            ProjectLanguages = new List<ProjectLanguage>();
+            foreach(Language language in vm.Languages ?? new List<Language>())
+            {
+                ProjectLanguages.Add(new ProjectLanguage() { Language = language });
+            }
+
+            ProjectPlatforms = new List<ProjectPlatform>(); 
+            foreach(Platform platform in vm.Platforms ?? new List<Platform>())
+            {
+                ProjectPlatforms.Add(new ProjectPlatform() { Platform = platform });
+            }
+        }
+
     }
 }

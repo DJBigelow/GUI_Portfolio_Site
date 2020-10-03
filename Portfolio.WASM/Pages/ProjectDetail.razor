@@ -3,43 +3,77 @@
 
 
 <div class="align-self-center">
-    <h4>@Project.Title</h4>
+    @*<h4>@Project.Title</h4>
     <h4>@Project.Requirement</h4>
     <h4>@Project.Design</h4>
-    <h4>@Project.CompletionDate</h4>
+    <h4>@Project.CompletionDate</h4>*@
 
-    @*<div class="form-group row">
+    <div class="form-group row">
         <div class="col-sm-8">
-            <label type="text" class="form-control-plaintext">@Project.Title</label>
+            <label type="text" class="form-control-plaintext" style="font-weight:bold;">@ProjectViewModel.Title</label>
         </div>
     </div>
 
 
     <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Requirement</label>
+        <label class="col-sm-4 col-form-label">Requirement:</label>
         <div class="col-sm-8">
-            <label type="text" class="form-control-plaintext">@Project.Requirement</label>
+            <label type="text" class="form-control-plaintext">@ProjectViewModel.Requirement</label>
         </div>
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-4 col-form-label">Design</label>
+        <label class="col-sm-4 col-form-label">Design:</label>
         <div class="col-sm-8">
-            <label type="text" class="form-control-plaintext">@Project.Design</label>
+            <label type="text" class="form-control-plaintext">@ProjectViewModel.Design</label>
         </div>
     </div>
 
     <div class="form-group row">
         <label class="col-sm-4 col-form-label">Date Completed</label>
         <div class="col-sm-8">
-            <label type="text" class="form-control-plaintext">@Project.CompletionDate</label>
+            <label type="text" class="form-control-plaintext">@ProjectViewModel.CompletionDate</label>
         </div>
-    </div>*@
+    </div>
+
+    <lh>Frameworks</lh>
+    <ul>
+        @if (ProjectViewModel.Frameworks != null)
+        {
+            foreach (Portfolio.Shared.Models.Framework framework in ProjectViewModel.Frameworks)
+            {
+                <li>@framework.Name</li>
+            }
+        }
+
+    </ul>
+
+    <lh>Languages</lh>
+    <ul>
+        @if (ProjectViewModel.Languages != null)
+        {
+            foreach (Portfolio.Shared.Models.Language language in ProjectViewModel.Languages)
+            {
+                <li>@language.Name</li>
+            }
+        }
+    </ul>
+
+    <lh>Platforms</lh>
+    <ul>
+        @if (ProjectViewModel.Platforms != null)
+        {
+            foreach(Portfolio.Shared.Models.Platform platform in ProjectViewModel.Platforms)
+            {
+                <li>@platform.Name</li>
+            }
+        }
+    </ul>
 
 </div>
 
 <div>
-    <a href=@($"projects/edit/{Project.ID}")>Edit</a>
+    <a href=@($"projects/edit/{ProjectViewModel.ID}")>Edit</a>
     <button type="button" @onclick="@DeleteProject">Delete</button>
 </div>
 

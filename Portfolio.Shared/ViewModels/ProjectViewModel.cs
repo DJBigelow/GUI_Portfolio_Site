@@ -27,11 +27,28 @@ namespace Portfolio.Shared
             CompletionDate = project.CompletionDate;
 
             
-            Frameworks = new List<Framework>(project.ProjectFrameworks.Select(pf => pf.Framework));
-            Languages = new List<Language>(project.ProjectLanguages.Select(pl => pl.Language));
-            Platforms = new List<Platform>(project.ProjectPlatforms.Select(pp => pp.Platform));
+
+            Frameworks = new List<Framework>();
+            foreach(ProjectFramework pf in project.ProjectFrameworks ?? new List<ProjectFramework>())
+            {
+                Frameworks.Add(pf.Framework);
+            }
+
+            Languages = new List<Language>();
+            foreach(ProjectLanguage pl in project.ProjectLanguages ?? new List<ProjectLanguage>())
+            {
+                Languages.Add(pl.Language);
+            }
+
+            Platforms = new List<Platform>();
+            foreach(ProjectPlatform pp in project.ProjectPlatforms ?? new List<ProjectPlatform>())
+            {
+                Platforms.Add(pp.Platform);
+            }
 
         }
+
+        public ProjectViewModel() { }
 
 
     }

@@ -47,7 +47,16 @@ namespace Portfolio.Shared.Data
 
         public async Task UpdateProjectAsync(Project project)
         {
-            context.Update(project);
+            //Instead of simply calling context.Update(project) from the get-go, we  have to manually copy the data from project to existingProject because they aren't the same object. 
+            //This is because project is a new Project object converted from a ProjectViewModel object received from the front-end
+            var existingProject = await GetProjectAsync(project.ID);
+
+            existingProject.Title = project.Title;
+            existingProject.Requirement = project.Requirement;
+            existingProject.Design = project.Design;
+            existingProject.CompletionDate = project.CompletionDate;
+
+            context.Update(existingProject);
             await context.SaveChangesAsync();
         }
 

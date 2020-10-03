@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Portfolio.Shared;
 
 namespace Portfolio.WASM.Pages
 {
@@ -15,7 +16,7 @@ namespace Portfolio.WASM.Pages
 
 
         //For some reason beyond my understanding, this property needs to be initialized before it's assigned anything, otherwise you get a null reference exception
-        public Project Project { get; set; } = new Project();
+        public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -25,14 +26,14 @@ namespace Portfolio.WASM.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            Project = await ProjectDataService.GetProjectAsync(ProjectID);
+            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectID);
 
             base.OnInitialized();
         }
 
         public async void DeleteProject()
         {
-            await ProjectDataService.DeleteProjectAsync(Project.ID);
+            await ProjectDataService.DeleteProjectAsync(ProjectViewModel.ID);
 
             NavigationManager.NavigateTo("/");
         }

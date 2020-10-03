@@ -1,26 +1,23 @@
 ﻿<h3>Projects</h3>
 
-@*@page "/projects"*@
+
 @page "/"
 
 <table class="table">
     <thead>
         <tr>
             <td>Title</td>
-            @*<td>Requirement</td>
-                <td>Design</td>*@
+         
             <td>Completion Date</td>
         </tr>
     </thead>
     <tbody>
         @if (ProjectList != null)
         {
-            foreach (Portfolio.Shared.Models.Project project in ProjectList)
+            foreach (Portfolio.Shared.ProjectViewModel project in ProjectList)
             {
                 <tr>
                     <td> <a href="@($"projects/detail/{project.ID}")">@project.Title</a> </td>
-                    @*<td>@project.Requirement</td>
-                        <td>@project.Design</td>*@
                     <td>@project.CompletionDate</td>
                     <td>
                     </td>
@@ -32,9 +29,6 @@
     </tbody>
 
 </table>
-
-    22222
-
 
 <a href="@("projects/new")">New Project</a>
 

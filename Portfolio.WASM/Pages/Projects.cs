@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Portfolio.Shared;
 using Portfolio.Shared.Models;
 using Portfolio.WASM.Services;
 using System;
@@ -21,7 +22,7 @@ namespace Portfolio.WASM.Pages
         }
 
         [Parameter]
-        public IEnumerable<Project> ProjectList { get; set; }
+        public IEnumerable<ProjectViewModel> ProjectList { get; set; }
 
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Portfolio.Shared;
 
 namespace Portfolio.WASM.Pages
 {
@@ -16,8 +17,8 @@ namespace Portfolio.WASM.Pages
         [Inject]
         NavigationManager NavigationManager { get; set; }
 
-        public Project Project { get; set; } = new Project();
-
+        public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
+      
         [Parameter]
         public int ProjectID { get; set; }
 
@@ -36,28 +37,28 @@ namespace Portfolio.WASM.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Project = await ProjectDataService.GetProjectAsync(ProjectID);
+            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectID);
 
-            Title = Project.Title;
-            Requirement = Project.Requirement;
-            Design = Project.Design;
-            CompletionDate = Project.CompletionDate;
+            Title = ProjectViewModel.Title;
+            Requirement = ProjectViewModel.Requirement;
+            Design = ProjectViewModel.Design;
+            CompletionDate = ProjectViewModel.CompletionDate;
         }
 
         public async Task SubmitChanges()
         {
-            Project.Title = Title;
-            Project.Requirement = Requirement;
-            Project.Design = Design;
-            Project.CompletionDate = CompletionDate;
+            ProjectViewModel.Title = Title;
+            ProjectViewModel.Requirement = Requirement;
+            ProjectViewModel.Design = Design;
+            ProjectViewModel.CompletionDate = CompletionDate;
 
-            await ProjectDataService.UpdateProjectAsync(Project);
-            NavigationManager.NavigateTo($"projects/detail/{Project.ID}");
+            await ProjectDataService.UpdateProjectAsync(ProjectViewModel);
+            NavigationManager.NavigateTo($"projects/detail/{ProjectViewModel.ID}");
         }
 
         public void DiscardChanges()
         {
-            NavigationManager.NavigateTo($"projects/detail/{Project.ID}");
+            NavigationManager.NavigateTo($"projects/detail/{ProjectViewModel.ID}");
         }
 
 

@@ -20,25 +20,26 @@ namespace Portfolio.WASM.Services
         }
         
 
-        public async Task<IEnumerable<Project>> GetProjectsAsync()
+        public async Task<IEnumerable<ProjectViewModel>> GetProjectsAsync()
         {
-            return await JsonSerializer.DeserializeAsync<IEnumerable<Project>>(
+             var projectVMs = await JsonSerializer.DeserializeAsync<IEnumerable<ProjectViewModel>>(
                  await httpClient.GetStreamAsync("api/project/getprojects"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+
+            return projectVMs;
         }
 
-        public async Task<Project> GetProjectAsync(int projectID)
+        public async Task<ProjectViewModel> GetProjectAsync(int projectID)
         {
             ProjectViewModel projectVM = await JsonSerializer.DeserializeAsync<ProjectViewModel>(
                 await httpClient.GetStreamAsync($"api/project/getproject/{projectID}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
-            //Pick up work here
-            Project project = new Project();
-
-            return project;
+            return projectVM;
         }
 
-        public async Task AddProjectAsync(Project project)
+        public async Task AddProjectAsync(ProjectViewModel projectVM)
         {
+            Project project = new Project(projectVM);
+
             var projectJson = new StringContent(JsonSerializer.Serialize(project), Encoding.UTF8, "application/json");
 
             await httpClient.PostAsync("api/project/addproject", projectJson);
@@ -49,8 +50,10 @@ namespace Portfolio.WASM.Services
             await httpClient.DeleteAsync($"api/project/deleteproject/{projectID}");
         }
 
-        public async Task UpdateProjectAsync(Project project)
+        public async Task UpdateProjectAsync(ProjectViewModel projectVM)
         {
+            Project project = new Project(projectVM);
+
             var projectJson = new StringContent(JsonSerializer.Serialize(project), Encoding.UTF8, "application/json");
 
             await httpClient.PutAsync("api/project/updateproject", projectJson);
