@@ -1,0 +1,19 @@
+﻿@page "/projects/languages"
+
+<h3>Languages</h3>
+
+@foreach (Portfolio.Shared.Models.Language language in LanguageList)
+{
+    <ul>
+        <lh>@language.Name</lh>
+        @foreach (Portfolio.Shared.ProjectViewModel vm in ProjectViewModels)
+        {
+            if (vm.Languages.Contains(language))
+            {
+                <li>
+                    <a href="@($"projects/detail/{vm.ID}")">@vm.Title</a>
+                </li>
+            }
+        }
+    </ul>
+}

@@ -1,0 +1,19 @@
+﻿@page "/projects/frameworks"
+
+<h3>Frameworks</h3>
+
+@foreach(Portfolio.Shared.Models.Framework framework in FrameworkList)
+{
+    <ul>
+        <h4>@framework.Name</h4>
+        @foreach(Portfolio.Shared.ProjectViewModel vm in ProjectViewModels)
+        {
+            if (vm.Frameworks.Contains(framework))
+            {
+                <li>
+                    <a href="@($"projects/detail/{vm.ID}")">@vm.Title</a>
+                </li>
+            }
+        }
+    </ul>
+}

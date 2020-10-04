@@ -53,6 +53,7 @@ namespace Portfolio.Shared.Controllers
         [HttpGet("[action]")]
         public IActionResult GetProjects()
         {
+            var vms = repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList();
 
             return Ok(repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList());
         }
