@@ -22,8 +22,11 @@ namespace Portfolio.WASM.Services
 
         public async Task<IEnumerable<ProjectViewModel>> GetProjectsAsync()
         {
+            var response = await httpClient.GetStreamAsync("api/project/getprojects");
+
+
              var projectVMs = await JsonSerializer.DeserializeAsync<IEnumerable<ProjectViewModel>>(
-                 await httpClient.GetStreamAsync("api/project/getprojects"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                 response, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
             return projectVMs;
         }

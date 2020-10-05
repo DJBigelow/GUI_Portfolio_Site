@@ -75,10 +75,10 @@
 
 </div>
 
-<div>
-    <a href=@($"projects/edit/{ProjectViewModel.ID}")>Edit</a>
-    <button type="button" @onclick="@DeleteProject">Delete</button>
-</div>
+
+<a href=@($"projects/edit/{ProjectViewModel.ID}")>Edit</a>
+<button type="button" @onclick="@DeleteProject">Delete</button>
+<a href="/">Back</a>
 
 
 @code {
