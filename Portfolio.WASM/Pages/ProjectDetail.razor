@@ -36,13 +36,16 @@
         </div>
     </div>
 
+    @* In the future, each of these lists should be dynamically generated *@
     <lh>Frameworks</lh>
     <ul>
-        @if (ProjectViewModel.Frameworks != null)
+       
+       
+        @if (Frameworks.Count() > 0)
         {
-            foreach (Portfolio.Shared.Models.Framework framework in ProjectViewModel.Frameworks)
+            foreach (Category category in Frameworks)
             {
-                <li>@framework.Name</li>
+                <li>@category.Name</li>
             }
         }
 
@@ -50,22 +53,22 @@
 
     <lh>Languages</lh>
     <ul>
-        @if (ProjectViewModel.Languages != null)
+        @if (Languages.Count() > 0)
         {
-            foreach (Portfolio.Shared.Models.Language language in ProjectViewModel.Languages)
+            foreach (Category category in Languages)
             {
-                <li>@language.Name</li>
+                <li>@category.Name</li>
             }
         }
     </ul>
 
     <lh>Platforms</lh>
     <ul>
-        @if (ProjectViewModel.Platforms != null)
+        @if (Platforms.Count() > 0)
         {
-            foreach(Portfolio.Shared.Models.Platform platform in ProjectViewModel.Platforms)
+            foreach (Category category in Platforms)
             {
-                <li>@platform.Name</li>
+                <li>@category.Name</li>
             }
         }
     </ul>

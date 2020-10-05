@@ -20,18 +20,15 @@ namespace Portfolio.Shared.Data
 
 
 
-        public IEnumerable<Project> GetProjects() => context.Projects.Include(p => p.ProjectFrameworks).ThenInclude(pf => pf.Framework)
-                                                                     .Include(p => p.ProjectLanguages).ThenInclude(pl => pl.Language)
-                                                                     .Include(p => p.ProjectPlatforms).ThenInclude(pp => pp.Platform);
+        public IEnumerable<Project> GetProjects() => context.Projects.Include(p => p.ProjectCategories).ThenInclude(pc => pc.Category);
+                                                                   
 
         public async Task<Project> GetProjectAsync(int projectID)
         {
             var project = await context.Projects
-                .Include(p => p.ProjectFrameworks).ThenInclude(pf => pf.Framework)
-                .Include(p => p.ProjectLanguages).ThenInclude(pl => pl.Language)
-                .Include(p => p.ProjectPlatforms).ThenInclude(pp => pp.Platform)
+                .Include(p => p.ProjectCategories).ThenInclude(pc => pc.Category)
                 .FirstOrDefaultAsync(p => p.ID == projectID);
-            //return await context.Projects.FirstOrDefaultAsync(p => p.ID == projectID);
+           
             return project;
         }
 
@@ -62,63 +59,44 @@ namespace Portfolio.Shared.Data
             await context.SaveChangesAsync();
         }
 
-
-
-        public async Task AssociateProjectAndFramework(int projectID, string frameworkName)
+        public async Task AssociateProjectAndCategory(AssociationRequest associationRequest)
         {
-            Framework framework = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Frameworks, f => f.Name == frameworkName);
-
-            if (framework == null)
+            Category category = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Categories, c => c.Type == associationRequest.CategoryType && 
+                                                                                                                      c.Name == associationRequest.CategoryName);
+            if (category == null)
             {
-                framework = new Framework() { Name = frameworkName };
-                context.Frameworks.Add(framework);
-                await context.SaveChangesAsync();           
-            }
-
-            Project project = await GetProjectAsync(projectID);
-            ProjectFramework pf = new ProjectFramework() { Framework = framework, Project = project };
-
-            context.ProjectFrameworks.Add(pf);
-            await context.SaveChangesAsync();
-        }
-
-        public async Task AssociateProjectAndLanguage(int projectID, string languageName)
-        {
-            Language language = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Languages, f => f.Name == languageName);
-
-            if (language == null)
-            {
-                language = new Language() { Name = languageName };
-                context.Languages.Add(language);
+                category = new Category() { Type = associationRequest.CategoryType, Name = associationRequest.CategoryName };
+                context.Categories.Add(category);
                 await context.SaveChangesAsync();
             }
 
-            Project project = await GetProjectAsync(projectID);
-            ProjectLanguage pl = new ProjectLanguage() { Language = language, Project = project };
+            Project project = await GetProjectAsync(associationRequest.ProjectID);
 
-            context.ProjectLanguages.Add(pl);
+            ProjectCategory pc = new ProjectCategory() { Project = project, Category = category };
+            context.ProjectCategories.Add(pc);
             await context.SaveChangesAsync();
 
         }
 
-        public async Task AssociateProjectAndPlatform(int projectID, string platformName)
-        {
-            Platform platform = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Platforms, f => f.Name == platformName);
+        //public async Task AssociateProjectAndFramework(int projectID, string frameworkName)
+        //{
+        //    Framework framework = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Frameworks, f => f.Name == frameworkName);
 
-            if (platform == null)
-            {
-                platform = new Platform() { Name = platformName };
-                context.Platforms.Add(platform);
-                await context.SaveChangesAsync();
-            }
+        //    if (framework == null)
+        //    {
+        //        framework = new Framework() { Name = frameworkName };
+        //        context.Frameworks.Add(framework);
+        //        await context.SaveChangesAsync();           
+        //    }
 
-            Project project = await GetProjectAsync(projectID);
-            ProjectPlatform pp = new ProjectPlatform() { Platform = platform, Project = project };
+        //    Project project = await GetProjectAsync(projectID);
+        //    ProjectFramework pf = new ProjectFramework() { Framework = framework, Project = project };
 
-            context.ProjectPlatforms.Add(pp);
-            await context.SaveChangesAsync();
-        }
+        //    context.ProjectFrameworks.Add(pf);
+        //    await context.SaveChangesAsync();
+        //}
 
+     
 
     }
 }

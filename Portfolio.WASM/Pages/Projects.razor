@@ -32,7 +32,9 @@
 
 <a href="@("projects/new")">New Project</a>
 <div>
-    View By: <a href="projects/frameworks">Framework</a> <a href="projects/languages">Language</a> <a href="projects/platforms">Platform</a>
+    View By: <a href =@($"projects/{CategoryTypes.FRAMEWORK}")>Framework</a> 
+             <a href =@($"projects/{CategoryTypes.LANGUAGE}")>Language</a> 
+             <a href =@($"projects/{CategoryTypes.PLATFORM}")>Platform</a>
 </div>
 
 

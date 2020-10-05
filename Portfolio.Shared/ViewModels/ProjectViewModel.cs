@@ -14,9 +14,9 @@ namespace Portfolio.Shared
         public string Design { get; set; }
         public DateTime CompletionDate { get; set; }
 
-        public IList<Framework> Frameworks { get; set; }
-        public IList<Language> Languages { get; set; }
-        public IList<Platform> Platforms { get; set; }
+
+        public IList<Category> Categories { get; set; }
+
 
         public ProjectViewModel(Project project)
         {
@@ -28,24 +28,12 @@ namespace Portfolio.Shared
 
             
 
-            Frameworks = new List<Framework>();
-            foreach(ProjectFramework pf in project.ProjectFrameworks ?? new List<ProjectFramework>())
+            Categories = new List<Category>();
+            foreach(ProjectCategory pc in project.ProjectCategories ?? new List<ProjectCategory>())
             {
-                Frameworks.Add(pf.Framework);
+                Categories.Add(pc.Category);
             }
-
-            Languages = new List<Language>();
-            foreach(ProjectLanguage pl in project.ProjectLanguages ?? new List<ProjectLanguage>())
-            {
-                Languages.Add(pl.Language);
-            }
-
-            Platforms = new List<Platform>();
-            foreach(ProjectPlatform pp in project.ProjectPlatforms ?? new List<ProjectPlatform>())
-            {
-                Platforms.Add(pp.Platform);
-            }
-
+          
         }
 
         public ProjectViewModel() { }

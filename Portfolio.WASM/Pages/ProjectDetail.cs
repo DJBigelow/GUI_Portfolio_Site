@@ -18,6 +18,11 @@ namespace Portfolio.WASM.Pages
         //For some reason beyond my understanding, this property needs to be initialized before it's assigned anything, otherwise you get a null reference exception
         public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
 
+        public IEnumerable<Category> Frameworks { get; set; } = new List<Category>();
+        public IEnumerable<Category> Languages { get; set; } = new List<Category>();
+        public IEnumerable<Category> Platforms { get; set; } = new List<Category>();
+
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 
@@ -28,7 +33,9 @@ namespace Portfolio.WASM.Pages
         {
             ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectID);
 
-            base.OnInitialized();
+            Frameworks = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.FRAMEWORK);
+            Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
+            Platforms = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.PLATFORM);
         }
 
         public async void DeleteProject()

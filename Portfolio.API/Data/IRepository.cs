@@ -21,11 +21,7 @@ namespace Portfolio.Shared.Data
         public Task UpdateProjectAsync(Project project);
 
 
-        public Task AssociateProjectAndFramework(int projectID, string frameworkName);
-
-        public Task AssociateProjectAndLanguage(int projectID, string languageName);
-
-        public Task AssociateProjectAndPlatform(int projectID, string platformName);
+        public Task AssociateProjectAndCategory(AssociationRequest associationRequest);
 
     }
 }

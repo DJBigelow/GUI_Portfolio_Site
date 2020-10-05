@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Portfolio.Shared.Models
 {
-    public static class Categories
+    public static class CategoryTypes
     {
         public const string FRAMEWORK = "framework";
         public const string LANGUAGE = "language";

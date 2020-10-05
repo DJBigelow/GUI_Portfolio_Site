@@ -65,19 +65,19 @@ namespace Portfolio.WASM.Pages
 
         public async Task AddFramework()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = Categories.FRAMEWORK, Category = Framework, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.FRAMEWORK, CategoryName = Framework, ProjectID = ProjectID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
         }
 
         public async Task AddLanguage()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = Categories.LANGUAGE, Category = Language, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.LANGUAGE, CategoryName = Language, ProjectID = ProjectID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
         }
 
         public async Task AddPlatform()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = Categories.PLATFORM, Category = Platform, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.PLATFORM, CategoryName = Platform, ProjectID = ProjectID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
         }
     }

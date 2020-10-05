@@ -11,31 +11,22 @@ namespace Portfolio.Shared.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProjectFramework>().HasKey(pf => new { pf.ProjectID, pf.FrameworkID });
-            modelBuilder.Entity<ProjectLanguage>().HasKey(pl => new { pl.ProjectID, pl.LanguageID });
-            modelBuilder.Entity<ProjectPlatform>().HasKey(pp => new { pp.ProjectID, pp.PlatformID });
+            modelBuilder.Entity<ProjectCategory>().HasKey(pc => new { pc.CategoryID, pc.ProjectID });
         }
 
 
         public DbSet<Project> Projects { get; set; }
 
 
-        public DbSet<Framework> Frameworks { get; set; }
-        public DbSet<ProjectFramework> ProjectFrameworks { get; set; }
 
-
-        public DbSet<Language> Languages { get; set; }
-        public DbSet<ProjectLanguage> ProjectLanguages { get; set; }
-
-
-        public DbSet<Platform> Platforms { get; set; }
-        public DbSet<ProjectPlatform> ProjectPlatforms { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProjectCategory> ProjectCategories { get; set; }
 
     }
 }

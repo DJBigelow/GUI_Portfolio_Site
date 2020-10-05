@@ -24,16 +24,10 @@ namespace Portfolio.Shared.Models
         public DateTime CompletionDate { get; set; }
 
 
+        [JsonPropertyName("categories")]
+        public IList<ProjectCategory> ProjectCategories { get; set; }
 
-        [JsonPropertyName("frameworks")]
-        public IList<ProjectFramework> ProjectFrameworks { get; set; }
-
-        [JsonPropertyName("languages")]
-        public IList<ProjectLanguage> ProjectLanguages {get; set;}
-
-        [JsonPropertyName("platforms")]
-        public IList<ProjectPlatform> ProjectPlatforms {get; set;}
-
+      
 
         public Project() { }
 
@@ -45,23 +39,13 @@ namespace Portfolio.Shared.Models
             Design = vm.Design;
             CompletionDate = vm.CompletionDate;
 
-            ProjectFrameworks = new List<ProjectFramework>();
-            foreach(Framework framework in vm.Frameworks ?? new List<Framework>())
+            ProjectCategories = new List<ProjectCategory>();
+            foreach(Category category in vm.Categories ?? new List<Category>())
             {
-                ProjectFrameworks.Add(new ProjectFramework() { Framework = framework });
+                ProjectCategories.Add(new ProjectCategory() { Category = category });
             }
 
-            ProjectLanguages = new List<ProjectLanguage>();
-            foreach(Language language in vm.Languages ?? new List<Language>())
-            {
-                ProjectLanguages.Add(new ProjectLanguage() { Language = language });
-            }
-
-            ProjectPlatforms = new List<ProjectPlatform>(); 
-            foreach(Platform platform in vm.Platforms ?? new List<Platform>())
-            {
-                ProjectPlatforms.Add(new ProjectPlatform() { Platform = platform });
-            }
+      
         }
 
     }

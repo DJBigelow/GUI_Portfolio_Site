@@ -53,8 +53,6 @@ namespace Portfolio.Shared.Controllers
         [HttpGet("[action]")]
         public IActionResult GetProjects()
         {
-            var vms = repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList();
-
             return Ok(repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList());
         }
 
@@ -69,44 +67,10 @@ namespace Portfolio.Shared.Controllers
 
 
 
-        [HttpPost("[action]/{projectID}/{framework}")]
-        public async Task<IActionResult> AddFramework(int projectID, string framework)
-        {
-            await repository.AssociateProjectAndFramework(projectID, framework);
-            return NoContent();
-        }
-
-        [HttpPost("[action]/{projectID}/{language}")]
-        public async Task<IActionResult> AddLanguage(int projectID, string language)
-        {
-            await repository.AssociateProjectAndLanguage(projectID, language);
-            return NoContent();
-        }
-
-        [HttpPost("[action]/{projectID}/{platform}")]
-        public async Task<IActionResult> AddPlatform(int projectID, string platform)
-        {
-            await repository.AssociateProjectAndPlatform(projectID, platform);
-            return NoContent();
-        }
-
         [HttpPost("[action]")]
         public async Task<IActionResult> Associate(AssociationRequest associationRequest)
         {
-            switch (associationRequest.CategoryType)
-            {
-                case Categories.FRAMEWORK:
-                    await repository.AssociateProjectAndFramework(associationRequest.ProjectID, associationRequest.Category);
-                    break;
-
-                case Categories.LANGUAGE:
-                    await repository.AssociateProjectAndLanguage(associationRequest.ProjectID, associationRequest.Category);
-                    break;
-
-                case Categories.PLATFORM:
-                    await repository.AssociateProjectAndPlatform(associationRequest.ProjectID, associationRequest.Category);
-                    break;
-            }
+            await repository.AssociateProjectAndCategory(associationRequest);
 
             return NoContent();
         }
