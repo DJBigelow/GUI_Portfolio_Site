@@ -56,10 +56,20 @@ namespace Portfolio.Shared.Controllers
             return Ok(repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList());
         }
 
-        [HttpGet("[action]/{projectID}")]
-        public async Task<IActionResult> GetProject(int projectID)
+        //[HttpGet("[action]/{projectID}")]
+        //public async Task<IActionResult> GetProject(int projectID)
+        //{
+        //    var project = await repository.GetProjectAsync(projectID);
+        //    var projectVM = new ProjectViewModel(project);
+        //    return Ok(projectVM);
+        //}
+
+
+        [HttpGet("[action]/{slug}")]
+        public IActionResult GetProject(string slug)
         {
-            var project = await repository.GetProjectAsync(projectID);
+            var project = repository.GetProjects().FirstOrDefault(p => p.Slug == slug);
+            
             var projectVM = new ProjectViewModel(project);
             return Ok(projectVM);
         }

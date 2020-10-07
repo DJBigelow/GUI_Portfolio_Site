@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Portfolio.Shared.Utilities;
 
 namespace Portfolio.Shared.Data
 {
@@ -32,8 +33,10 @@ namespace Portfolio.Shared.Data
             return project;
         }
 
+
         public async Task AddProjectAsync(Project project)
         {
+            project.Slug = project.Title.ToSlug();
             await context.AddAsync(project);
             await context.SaveChangesAsync();
         }
@@ -51,6 +54,7 @@ namespace Portfolio.Shared.Data
             var existingProject = await GetProjectAsync(project.ID);
 
             existingProject.Title = project.Title;
+            existingProject.Slug = existingProject.Title.ToSlug();
             existingProject.Requirement = project.Requirement;
             existingProject.Design = project.Design;
             existingProject.CompletionDate = project.CompletionDate;
@@ -78,6 +82,7 @@ namespace Portfolio.Shared.Data
 
         }
 
+        
         //public async Task AssociateProjectAndFramework(int projectID, string frameworkName)
         //{
         //    Framework framework = await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync(context.Frameworks, f => f.Name == frameworkName);
@@ -96,7 +101,7 @@ namespace Portfolio.Shared.Data
         //    await context.SaveChangesAsync();
         //}
 
-     
+
 
     }
 }

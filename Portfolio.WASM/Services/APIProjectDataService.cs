@@ -18,15 +18,15 @@ namespace Portfolio.WASM.Services
         {
             this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
-        
+
 
         public async Task<IEnumerable<ProjectViewModel>> GetProjectsAsync()
         {
             var response = await httpClient.GetStreamAsync("api/project/getprojects");
 
 
-             var projectVMs = await JsonSerializer.DeserializeAsync<IEnumerable<ProjectViewModel>>(
-                 response, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var projectVMs = await JsonSerializer.DeserializeAsync<IEnumerable<ProjectViewModel>>(
+                response, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
 
             return projectVMs;
         }
@@ -38,6 +38,15 @@ namespace Portfolio.WASM.Services
 
             return projectVM;
         }
+
+        public async Task<ProjectViewModel> GetProjectAsync(string projectSlug)
+        {
+            ProjectViewModel projectVM = await JsonSerializer.DeserializeAsync<ProjectViewModel>(
+                await httpClient.GetStreamAsync($"api/project/getproject/{projectSlug}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+
+            return projectVM;
+        }
+
 
         public async Task AddProjectAsync(ProjectViewModel projectVM)
         {
@@ -69,5 +78,7 @@ namespace Portfolio.WASM.Services
 
             await httpClient.PostAsync("api/project/associate", json);
         }
+
+
     }
 }

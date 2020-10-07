@@ -9,7 +9,7 @@ using Portfolio.Shared;
 
 namespace Portfolio.WASM.Pages
 {
-    public partial class EditProject
+    public partial class EditProject : ComponentBase
     {
         [Inject]
         IProjectDataService ProjectDataService { get; set; }

@@ -18,6 +18,8 @@ namespace Portfolio.Shared.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProjectCategory>().HasKey(pc => new { pc.CategoryID, pc.ProjectID });
+
+            modelBuilder.Entity<Project>().HasIndex(p => p.Slug).IsUnique();
         }
 
 

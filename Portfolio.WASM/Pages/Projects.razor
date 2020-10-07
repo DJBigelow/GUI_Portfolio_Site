@@ -17,7 +17,7 @@
             foreach (Portfolio.Shared.ProjectViewModel project in ProjectList)
             {
                 <tr>
-                    <td> <a href="@($"projects/detail/{project.ID}")">@project.Title</a> </td>
+                    <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
                     <td>@project.CompletionDate</td>
                     <td>
                     </td>

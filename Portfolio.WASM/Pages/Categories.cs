@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Portfolio.WASM.Pages
 {
-    public partial class Categories
+    public partial class Categories : ComponentBase
     {
         [Parameter]
         public string CategoryTypeFilter { get; set; }

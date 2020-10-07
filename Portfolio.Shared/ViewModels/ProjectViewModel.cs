@@ -10,6 +10,7 @@ namespace Portfolio.Shared
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        public string Slug { get; set; }
         public string Requirement { get; set; }
         public string Design { get; set; }
         public DateTime CompletionDate { get; set; }
@@ -22,6 +23,7 @@ namespace Portfolio.Shared
         {
             ID = project.ID;
             Title = project.Title;
+            Slug = project.Slug;
             Requirement = project.Requirement;
             Design = project.Design;
             CompletionDate = project.CompletionDate;

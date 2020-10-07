@@ -14,6 +14,8 @@ namespace Portfolio.WASM.Services
 
         public Task<ProjectViewModel> GetProjectAsync(int projectID);
 
+        public Task<ProjectViewModel> GetProjectAsync(string projectSlug);
+
         public Task AddProjectAsync(ProjectViewModel project);
 
         public Task DeleteProjectAsync(int projectID);

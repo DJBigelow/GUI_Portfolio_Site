@@ -13,6 +13,7 @@ namespace Portfolio.Shared.Data
         public IEnumerable<Project> Projects { get; }
        
         public Task<Project> GetProjectAsync(int projectID);
+
         
         public Task AddProjectAsync(Project project);
 

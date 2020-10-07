@@ -9,10 +9,10 @@ using Portfolio.Shared;
 
 namespace Portfolio.WASM.Pages
 {
-    public partial class ProjectDetail
+    public partial class ProjectDetail : ComponentBase
     {
         [Parameter]
-        public int ProjectID { get; set; }
+        public string ProjectSlug { get; set; }
 
 
         //For some reason beyond my understanding, this property needs to be initialized before it's assigned anything, otherwise you get a null reference exception
@@ -31,7 +31,7 @@ namespace Portfolio.WASM.Pages
 
         protected async override Task OnInitializedAsync()
         {
-            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectID);
+            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectSlug);
 
             Frameworks = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.FRAMEWORK);
             Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
