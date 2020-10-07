@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Portfolio.Shared;
+using Portfolio.Shared.Utilities;
 
 namespace Portfolio.WASM.Pages
 {
@@ -20,7 +21,7 @@ namespace Portfolio.WASM.Pages
         public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
       
         [Parameter]
-        public int ProjectID { get; set; }
+        public string ProjectSlug { get; set; }
 
         public string Title { get; set; }
         public string Requirement { get; set; }
@@ -37,7 +38,7 @@ namespace Portfolio.WASM.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectID);
+            ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectSlug);
 
             Title = ProjectViewModel.Title;
             Requirement = ProjectViewModel.Requirement;
@@ -53,33 +54,34 @@ namespace Portfolio.WASM.Pages
             ProjectViewModel.CompletionDate = CompletionDate;
 
             await ProjectDataService.UpdateProjectAsync(ProjectViewModel);
-            NavigationManager.NavigateTo($"projects/detail/{ProjectViewModel.ID}");
+            ProjectSlug = ProjectViewModel.Title.ToSlug();
+            NavigationManager.NavigateTo($"projects/detail/{ProjectSlug}");
         }
 
         public void DiscardChanges()
         {
-            NavigationManager.NavigateTo($"projects/detail/{ProjectViewModel.ID}");
+            NavigationManager.NavigateTo($"projects/detail/{ProjectSlug}");
         }
 
 
 
         public async Task AddFramework()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.FRAMEWORK, CategoryName = Framework, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.FRAMEWORK, CategoryName = Framework, ProjectID = ProjectViewModel.ID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
             Framework = "";
         }
 
         public async Task AddLanguage()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.LANGUAGE, CategoryName = Language, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.LANGUAGE, CategoryName = Language, ProjectID = ProjectViewModel.ID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
             Language = "";
         }
 
         public async Task AddPlatform()
         {
-            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.PLATFORM, CategoryName = Platform, ProjectID = ProjectID };
+            var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.PLATFORM, CategoryName = Platform, ProjectID = ProjectViewModel.ID };
             await ProjectDataService.AssociateProjectWithCategory(associationRequest);
             Platform = "";
         }
