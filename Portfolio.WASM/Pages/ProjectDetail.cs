@@ -22,6 +22,11 @@ namespace Portfolio.WASM.Pages
         public IEnumerable<Category> Languages { get; set; } = new List<Category>();
         public IEnumerable<Category> Platforms { get; set; } = new List<Category>();
 
+        public string RequirementHTMLString { get; set; }
+        public string DesignHTMLString { get; set; }
+
+        //public string RequirementHTMLString { get; set; }
+
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -36,6 +41,9 @@ namespace Portfolio.WASM.Pages
             Frameworks = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.FRAMEWORK);
             Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
             Platforms = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.PLATFORM);
+
+            RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
+            DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design);
         }
 
         public async void DeleteProject()
