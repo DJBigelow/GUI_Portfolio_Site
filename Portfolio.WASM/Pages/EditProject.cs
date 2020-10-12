@@ -53,8 +53,9 @@ namespace Portfolio.WASM.Pages
             ProjectViewModel.Design = Design;
             ProjectViewModel.CompletionDate = CompletionDate;
 
-            await ProjectDataService.UpdateProjectAsync(ProjectViewModel);
             ProjectSlug = ProjectViewModel.Title.ToSlug();
+
+            await ProjectDataService.UpdateProjectAsync(ProjectViewModel);
             NavigationManager.NavigateTo($"projects/detail/{ProjectSlug}");
         }
 

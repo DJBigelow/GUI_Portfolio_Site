@@ -55,4 +55,8 @@
     <ProjectReference Include="..\Portfolio.Shared\Portfolio.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

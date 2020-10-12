@@ -1,0 +1,39 @@
+﻿@using Portfolio.WASM.Services
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>Title</td>
+            <td>Completion Date</td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Projects != null)
+        {
+            foreach (Portfolio.Shared.ProjectViewModel project in Projects)
+            {
+                <tr>
+                    <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
+                    <td>@project.CompletionDate</td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
+
+@code {      
+    [Inject]
+    public IProjectDataService ProjectDataService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Projects = await ProjectDataService.GetProjectsAsync();
+
+    }
+
+    [Parameter]
+    public IEnumerable<ProjectViewModel> Projects { get; set; }
+}

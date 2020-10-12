@@ -1,33 +1,9 @@
 ﻿<h3>Projects</h3>
-
+@using Portfolio.WASM.Components
 
 @page "/"
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>Title</td>
-         
-            <td>Completion Date</td>
-        </tr>
-    </thead>
-    <tbody>
-        @if (ProjectList != null)
-        {
-            foreach (Portfolio.Shared.ProjectViewModel project in ProjectList)
-            {
-                <tr>
-                    <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
-                    <td>@project.CompletionDate</td>
-                    <td>
-                    </td>
-                </tr>
-            }
-        }
-
-    </tbody>
-
-</table>
+<ProjectList />
 
 <div>
     View By: <a href =@($"projects/{CategoryTypes.FRAMEWORK}")>Framework</a> 
