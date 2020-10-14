@@ -1,0 +1,55 @@
+﻿<EditForm Model="@ProjectViewModel" OnValidSubmit="AddFramework">
+    <label>
+        Add Framework <InputText @bind-Value="Framework" />
+    </label>
+    <button type="submit">Add</button>
+</EditForm>
+
+<EditForm Model="@ProjectViewModel" OnValidSubmit="AddLanguage">
+    <label>
+        Add Language <InputText @bind-Value="Language" />
+    </label>
+    <button type="submit">Add</button>
+</EditForm>
+
+<EditForm Model="@ProjectViewModel" OnValidSubmit="AddPlatform">
+    <label>
+        Add Platform <InputText @bind-Value="Platform" />
+    </label>
+    <button type="submit">Add</button>
+</EditForm>
+
+
+@code {
+    [Parameter]
+    public ProjectViewModel ProjectViewModel { get; set; }
+
+    [Inject]
+    Portfolio.WASM.Services.IProjectDataService ProjectDataService { get; set; }
+
+
+    public string Framework { get; set; }
+    public string Language { get; set; }
+    public string Platform { get; set; }
+
+    public async Task AddFramework()
+    {
+        var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.FRAMEWORK, CategoryName = Framework, ProjectID = ProjectViewModel.ID };
+        await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        Framework = "";
+    }
+
+    public async Task AddLanguage()
+    {
+        var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.LANGUAGE, CategoryName = Language, ProjectID = ProjectViewModel.ID };
+        await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        Language = "";
+    }
+
+    public async Task AddPlatform()
+    {
+        var associationRequest = new AssociationRequest() { CategoryType = CategoryTypes.PLATFORM, CategoryName = Platform, ProjectID = ProjectViewModel.ID };
+        await ProjectDataService.AssociateProjectWithCategory(associationRequest);
+        Platform = "";
+    }
+}

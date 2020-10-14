@@ -1,8 +1,11 @@
-﻿@page "/projects/new"
+﻿@using Portfolio.WASM.Components
+@page "/projects/new"
 
 <h3>Add Project</h3>
 
-<EditForm Model="@ProjectViewModel" OnValidSubmit="@PostProject">
+<ProjectForm ProjectViewModel="new ProjectViewModel()" IsEditMode="false"/>
+
+@*<EditForm Model="@ProjectViewModel" OnValidSubmit="@PostProject">
     <p>
         <label>
             Title <br />
@@ -29,4 +32,4 @@
         </label>
     </p>
     <button type="submit">Submit</button>
-</EditForm>
+</EditForm>*@

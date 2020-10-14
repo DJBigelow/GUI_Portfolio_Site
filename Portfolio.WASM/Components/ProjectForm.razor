@@ -1,0 +1,91 @@
+﻿@using Portfolio.Shared.Utilities
+@using Portfolio.WASM.Services
+
+<EditForm Model="@ProjectViewModel" OnValidSubmit="@Submit">
+    <p>
+        <label>
+            Title <br />
+            <InputText @bind-Value="Title" />
+        </label>
+    </p>
+
+    <p>
+        <label>
+            Requirement <br />
+            <InputTextArea @bind-Value="Requirement" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Design <br />
+            <InputTextArea @bind-Value="Design" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Date of Completion <br />
+            <InputDate @bind-Value="CompletionDate" />
+        </label>
+    </p>
+    <button type="submit">Submit</button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public ProjectViewModel ProjectViewModel { get; set; }
+
+    [Parameter]
+    public bool IsEditMode { get; set; }
+
+    [Inject]
+    public IProjectDataService ProjectDataService { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    public string Title { get; set; }
+    public string Requirement { get; set; }
+    public string Design { get; set; }
+    public DateTime CompletionDate { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (IsEditMode)
+        {
+            Title = ProjectViewModel.Title;
+            Requirement = ProjectViewModel.Requirement;
+            Design = ProjectViewModel.Design;
+            CompletionDate = ProjectViewModel.CompletionDate;
+        }
+    }
+
+    public async Task Submit()
+    {
+        if (!IsEditMode)
+        {
+            ProjectViewModel = new ProjectViewModel() { Title = Title,
+                Requirement = Requirement,
+                Design = Design,
+                CompletionDate = CompletionDate};
+
+            await ProjectDataService.AddProjectAsync(ProjectViewModel);
+            NavigationManager.NavigateTo("");
+
+
+        }
+        else
+        {
+            ProjectViewModel.Title = Title;
+            ProjectViewModel.Requirement = Requirement;
+            ProjectViewModel.Design = Design;
+            ProjectViewModel.CompletionDate = CompletionDate;
+
+            string projectSlug = ProjectViewModel.Title.ToSlug();
+
+            await ProjectDataService.UpdateProjectAsync(ProjectViewModel);
+            NavigationManager.NavigateTo($"projects/detail/{projectSlug}");
+        }
+
+    }
+}

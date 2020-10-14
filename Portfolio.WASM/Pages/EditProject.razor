@@ -1,9 +1,10 @@
-﻿@page "/projects/edit/{ProjectSlug}"
+﻿@using Portfolio.WASM.Components
+@page "/projects/edit/{ProjectSlug}"
 
 <h3>EditProject</h3>
 
 @* Project Form *@
-<EditForm Model="@ProjectViewModel" OnValidSubmit="@SubmitChanges">
+<!--<EditForm Model="@ProjectViewModel" OnValidSubmit="@SubmitChanges">
     <p>
         <label>
             Title <br />
@@ -31,29 +32,11 @@
     </p>
     <button type="submit">Submit</button>
 
-</EditForm>
+</EditForm>-->
+
+<ProjectForm ProjectViewModel="@ProjectViewModel" IsEditMode="true"/>
 
 
-@* Categories *@
-<EditForm Model="@ProjectViewModel" OnValidSubmit="AddFramework">
-    <label>
-        Add Framework <InputText @bind-Value="Framework" />
-    </label>
-    <button type="submit">Add</button>
-</EditForm>
-
-<EditForm Model="@ProjectViewModel" OnValidSubmit="AddLanguage">
-    <label>
-        Add Language <InputText @bind-Value="Language" />
-    </label>
-    <button type="submit">Add</button>
-</EditForm>
-
-<EditForm Model="@ProjectViewModel" OnValidSubmit="AddPlatform">
-    <label>
-        Add Platform <InputText @bind-Value="Platform" />
-    </label>
-    <button type="submit">Add</button>
-</EditForm>
+<CategoryInputs ProjectViewModel="@ProjectViewModel"/>
 
 <button type="button" @onclick="@DiscardChanges">Discard Changes</button>
