@@ -19,7 +19,7 @@ namespace Portfolio.WASM.Pages
         NavigationManager NavigationManager { get; set; }
 
         public ProjectViewModel ProjectViewModel { get; set; } = new ProjectViewModel();
-      
+
         [Parameter]
         public string ProjectSlug { get; set; }
 
@@ -30,10 +30,10 @@ namespace Portfolio.WASM.Pages
 
 
         public string Framework { get; set; }
-        public string Language{ get; set; }
+        public string Language { get; set; }
         public string Platform { get; set; }
 
-      
+
 
 
         protected override async Task OnInitializedAsync()
