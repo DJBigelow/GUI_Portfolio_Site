@@ -46,9 +46,8 @@ app {
     text-overflow: ellipsis;
 }
 
-
 .sidebar {
-    /*background-image: linear-gradient(180deg, #0366d6 0%, #f7f7f7 70%);*/
+    background-color: lightsteelblue;
 }
 
     .sidebar .top-row {
