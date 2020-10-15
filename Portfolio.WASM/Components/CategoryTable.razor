@@ -1,0 +1,26 @@
+﻿<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <td> <b> @CategoryType</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Categories.Count() > 0)
+        {
+            foreach (Category category in Categories)
+            {
+                <tr>
+                    <td>@category.Name</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public IEnumerable<Category> Categories { get; set; }
+
+    [Parameter]
+    public string CategoryType { get; set; }
+}

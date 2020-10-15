@@ -1,7 +1,7 @@
 ﻿@using Portfolio.WASM.Services
 
 
-<table class="table">
+<table class="table-bordered table-striped table-sm">
     <thead>
         <tr>
             <td>Title</td>
@@ -15,7 +15,7 @@
             {
                 <tr>
                     <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
-                    <td>@project.CompletionDate</td>
+                    <td>@project.CompletionDate.ToString("MMMM dd, yyyy")</td>
                 </tr>
             }
         }
