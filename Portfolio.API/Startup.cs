@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Portfolio.Shared.Data;
+using Microsoft.OpenApi.Models;
 
 namespace Portfolio.Shared
 {
@@ -35,6 +36,10 @@ namespace Portfolio.Shared
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Portfolio", Version = "v1" });
+            });
             
         }
 
@@ -55,6 +60,12 @@ namespace Portfolio.Shared
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Portfolio");
             });
         }
 
