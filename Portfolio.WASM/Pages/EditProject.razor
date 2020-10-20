@@ -1,12 +1,14 @@
 ﻿@using Portfolio.WASM.Components
 @page "/projects/edit/{ProjectSlug}"
+<br style="margin-top: 20%;" />
+<br style="margin-top: 20%;" />
 
-<h3>EditProject</h3>
+<h3>Edit Project</h3>
 
 
-<ProjectForm ProjectViewModel="@ProjectViewModel" IsEditMode="true"/>
+<ProjectForm ProjectViewModel="@ProjectViewModel" IsEditMode="true" />
 
 
-<CategoryInputs ProjectViewModel="@ProjectViewModel"/>
+<CategoryInputs ProjectViewModel="@ProjectViewModel" />
 
 <button type="button" @onclick="@DiscardChanges">Discard Changes</button>

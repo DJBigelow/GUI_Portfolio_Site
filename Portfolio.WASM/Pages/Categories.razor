@@ -1,11 +1,13 @@
 ﻿@page "/projects/{CategoryTypeFilter}"
 
+<br style="margin-top: 20%;" />
+<br style="margin-top: 20%;" />
 
-@foreach(Category category in CategoryList)
+@foreach (Category category in CategoryList)
 {
     <lh>@category.Name</lh>
     <ul>
-        @foreach(Portfolio.Shared.ProjectViewModel projectVM in ProjectViewModels.Where(pvm => pvm.Categories.Contains(category)))
+        @foreach (Portfolio.Shared.ProjectViewModel projectVM in ProjectViewModels.Where(pvm => pvm.Categories.Contains(category)))
         {
             <li>
                 <a href="@($"projects/detail/{projectVM.ID}")">@projectVM.Title</a>
