@@ -42,7 +42,7 @@ namespace Portfolio.WASM.Pages
             Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
             Platforms = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.PLATFORM);
 
-            RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
+            //RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
             DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design);
         }
 

@@ -40,6 +40,8 @@ namespace Portfolio.WASM.Pages
         {
             ProjectViewModel = await ProjectDataService.GetProjectAsync(ProjectSlug);
 
+
+
             Title = ProjectViewModel.Title;
             Requirement = ProjectViewModel.Requirement;
             Design = ProjectViewModel.Design;
