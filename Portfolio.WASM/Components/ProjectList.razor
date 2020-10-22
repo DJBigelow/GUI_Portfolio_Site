@@ -11,7 +11,7 @@
     <tbody>
         @if (Projects != null)
         {
-            foreach (Portfolio.Shared.ProjectViewModel project in Projects)
+            foreach (Portfolio.Shared.ProjectViewModel project in Projects.OrderBy(p => p.CompletionDate))
             {
                 <tr>
                     <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
