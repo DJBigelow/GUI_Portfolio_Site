@@ -23,6 +23,14 @@ namespace Portfolio.WASM
             var url = builder.Configuration.GetValue<string>("BaseUrl");
 
 
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddOidcAuthentication(options =>
+            {
+                builder.Configuration.Bind("Auth0", options.ProviderOptions);
+                options.ProviderOptions.ResponseType = "code";
+            });
+
             var jitterer = new Random();
             var retryPolicy = HttpPolicyExtensions
                 .HandleTransientHttpError()

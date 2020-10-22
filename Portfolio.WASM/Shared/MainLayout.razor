@@ -1,13 +1,18 @@
 ﻿@inherits LayoutComponentBase
 
 <div>
-    <NavMenu />
+    @*<NavMenu />*@
 </div>
 
 <br style="margin-top: 20%;" />
 <br style="margin-top: 20%;" />
 
 <div class="main">
+    <div class="top-row px-4">
+        <AccessControl />
+        <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
+    </div>
+
     <div class="content px-4">
         @Body
     </div>
