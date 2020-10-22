@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Portfolio.Shared;
+using Markdig;
+using Markdig.SyntaxHighlighting;
 
 namespace Portfolio.WASM.Pages
 {
@@ -42,8 +44,8 @@ namespace Portfolio.WASM.Pages
             Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
             Platforms = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.PLATFORM);
 
-            //RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
-            DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design);
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSyntaxHighlighting().Build();
+            DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design, pipeline);
         }
 
         public async void DeleteProject()
