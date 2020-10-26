@@ -13,7 +13,6 @@ namespace Portfolio.Shared.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProjectController : ControllerBase
     {
         private readonly IRepository repository;
@@ -23,7 +22,7 @@ namespace Portfolio.Shared.Controllers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-
+        [Authorize]
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProject([FromBody] Project project)
         {
@@ -33,6 +32,7 @@ namespace Portfolio.Shared.Controllers
         }
 
 
+        [Authorize]
         [HttpDelete("[action]/{projectID}")]
         public async Task<IActionResult> DeleteProject(int projectID)
         {
@@ -42,6 +42,7 @@ namespace Portfolio.Shared.Controllers
         }
 
 
+        [Authorize]
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProject(Project project)
         {
@@ -49,7 +50,6 @@ namespace Portfolio.Shared.Controllers
 
             return NoContent();
         }
-
 
 
         [HttpGet("[action]")]
@@ -78,7 +78,7 @@ namespace Portfolio.Shared.Controllers
 
 
 
-
+        [Authorize]
         [HttpPost("[action]")]
         public async Task<IActionResult> Associate(AssociationRequest associationRequest)
         {

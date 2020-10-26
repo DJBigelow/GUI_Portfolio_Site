@@ -7,11 +7,11 @@
 <h1>@ProjectViewModel.Title</h1>
 
 @*<h3>Requirement</h3>
-@((MarkupString)RequirementHTMLString)
+    @((MarkupString)RequirementHTMLString)
 
-<br style="height: 100px" />
-<hr />
-<br style="height: 100px" />*@
+    <br style="height: 100px" />
+    <hr />
+    <br style="height: 100px" />*@
 
 
 @*<h3>Design</h3>*@
@@ -35,15 +35,17 @@
     </div>
 
 
+
 </div>
 
+<br style="height: 100px" />
+<hr />
+<br style="height: 100px" />
 
-<div>
-    <a href=@($"projects/edit/{ProjectSlug}")>Edit</a>
-    <button type="button" @onclick="@DeleteProject">Delete</button>
-</div>
+<a href=@($"projects/edit/{ProjectSlug}")>Edit</a>
+<button type="button" @onclick="@DeleteProject">Delete</button>
 
-<br />
+<br style="height: 100px" />
 
 <a href="/projects">Back</a>
 
