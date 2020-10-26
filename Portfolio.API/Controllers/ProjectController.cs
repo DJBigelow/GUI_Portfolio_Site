@@ -52,6 +52,19 @@ namespace Portfolio.Shared.Controllers
         }
 
 
+        [Authorize]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Associate(AssociationRequest associationRequest)
+        {
+            await repository.AssociateProjectAndCategory(associationRequest);
+
+            return NoContent();
+        }
+
+
+
+
+
         [HttpGet("[action]")]
         public IActionResult GetProjects()
         {
@@ -78,13 +91,5 @@ namespace Portfolio.Shared.Controllers
 
 
 
-        [Authorize]
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Associate(AssociationRequest associationRequest)
-        {
-            await repository.AssociateProjectAndCategory(associationRequest);
-
-            return NoContent();
-        }
     }
 }
