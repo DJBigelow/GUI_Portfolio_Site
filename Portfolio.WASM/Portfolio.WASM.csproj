@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazorise.Sidebar" Version="0.9.1.2" />
     <PackageReference Include="Markdig" Version="0.22.0" />
     <PackageReference Include="Markdig.SyntaxHighlighting" Version="1.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
