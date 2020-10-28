@@ -62,7 +62,6 @@ namespace Portfolio.WASM.Services
 
             var projectJson = new StringContent(JsonSerializer.Serialize(project), Encoding.UTF8, "application/json");
 
-            await httpClient.PostAsync("api/project/addproject", projectJson);
         }
 
         public async Task DeleteProjectAsync(int projectID)

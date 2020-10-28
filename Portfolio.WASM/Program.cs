@@ -38,7 +38,10 @@ namespace Portfolio.WASM
                 .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
                                                     + TimeSpan.FromMilliseconds(jitterer.Next(0, 100)));
 
+            builder.Services.AddScoped<Auth0AuthorizationMessageHandler>();
+
             builder.Services.AddHttpClient<IProjectDataService, APIProjectDataService>(client => client.BaseAddress = new Uri(url))
+                .AddHttpMessageHandler<Auth0AuthorizationMessageHandler>()
                 .SetHandlerLifetime(TimeSpan.FromSeconds(10))
                 .AddPolicyHandler(retryPolicy);
             
