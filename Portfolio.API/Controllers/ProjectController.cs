@@ -22,7 +22,7 @@ namespace Portfolio.Shared.Controllers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProject([FromBody] Project project)
         {
@@ -32,7 +32,7 @@ namespace Portfolio.Shared.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("[action]/{projectID}")]
         public async Task<IActionResult> DeleteProject(int projectID)
         {
@@ -42,7 +42,7 @@ namespace Portfolio.Shared.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateProject(Project project)
         {
@@ -52,7 +52,7 @@ namespace Portfolio.Shared.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Associate(AssociationRequest associationRequest)
         {
@@ -71,13 +71,6 @@ namespace Portfolio.Shared.Controllers
             return Ok(repository.GetProjects().Select(p => new ProjectViewModel(p)).ToList());
         }
 
-        //[HttpGet("[action]/{projectID}")]
-        //public async Task<IActionResult> GetProject(int projectID)
-        //{
-        //    var project = await repository.GetProjectAsync(projectID);
-        //    var projectVM = new ProjectViewModel(project);
-        //    return Ok(projectVM);
-        //}
 
 
         [HttpGet("[action]/{slug}")]

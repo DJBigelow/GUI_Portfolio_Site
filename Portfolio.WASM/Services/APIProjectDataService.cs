@@ -55,8 +55,8 @@ namespace Portfolio.WASM.Services
 
         public async Task AddProjectAsync(ProjectViewModel projectVM)
         {
-            var token = await TryGetAccessToken();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+            //var token = await TryGetAccessToken();
+            //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
             Project project = new Project(projectVM);
 
@@ -67,8 +67,8 @@ namespace Portfolio.WASM.Services
 
         public async Task DeleteProjectAsync(int projectID)
         {
-            var token = await TryGetAccessToken();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+            //var token = await TryGetAccessToken();
+            //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
             await httpClient.DeleteAsync($"api/project/deleteproject/{projectID}");
            
@@ -76,8 +76,8 @@ namespace Portfolio.WASM.Services
 
         public async Task UpdateProjectAsync(ProjectViewModel projectVM)
         {
-            var token = await TryGetAccessToken();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+            //var token = await TryGetAccessToken();
+            //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
             Project project = new Project(projectVM);
 
@@ -90,8 +90,8 @@ namespace Portfolio.WASM.Services
 
         public async Task AssociateProjectWithCategory(AssociationRequest associationRequest)
         {
-            var token = await TryGetAccessToken();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+            //var token = await TryGetAccessToken();
+            //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
             var json = new StringContent(JsonSerializer.Serialize(associationRequest), Encoding.UTF8, "application/json");
 
