@@ -100,17 +100,17 @@ namespace Portfolio.WASM.Services
         }
 
 
-        private async Task<AccessToken> TryGetAccessToken()
-        {
-            var tokenResult = await tokenProvider.RequestAccessToken();
-            if (tokenResult.TryGetToken(out var token))
-            {
-                return token;
-            }
-            else
-            {
-                throw new Exception("API access not granted");
-            }
-        }
+        //private async Task<AccessToken> TryGetAccessToken()
+        //{
+        //    var tokenResult = await tokenProvider.RequestAccessToken();
+        //    if (tokenResult.TryGetToken(out var token))
+        //    {
+        //        return token;
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("API access not granted");
+        //    }
+        //}
     }
 }

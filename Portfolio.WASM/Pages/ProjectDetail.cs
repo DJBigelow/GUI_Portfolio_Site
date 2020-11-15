@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Portfolio.Shared;
+using Markdig;
+using Markdig.Extensions;
+using Markdig.SyntaxHighlighting;
 
 namespace Portfolio.WASM.Pages
 {
@@ -41,6 +44,8 @@ namespace Portfolio.WASM.Pages
             Frameworks = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.FRAMEWORK);
             Languages = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.LANGUAGE);
             Platforms = ProjectViewModel.Categories.Where(c => c.Type == CategoryTypes.PLATFORM);
+
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSyntaxHighlighting().Build();
 
             //RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
             DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design);
