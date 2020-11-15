@@ -48,7 +48,7 @@ namespace Portfolio.WASM.Pages
             var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSyntaxHighlighting().Build();
 
             //RequirementHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Requirement);
-            DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design);
+            DesignHTMLString = Markdig.Markdown.ToHtml(ProjectViewModel.Design, pipeline);
         }
 
         public async void DeleteProject()
