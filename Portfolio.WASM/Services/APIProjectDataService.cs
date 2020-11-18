@@ -15,12 +15,10 @@ namespace Portfolio.WASM.Services
     public class APIProjectDataService : IProjectDataService
     {
         private readonly HttpClient httpClient;
-        private readonly IAccessTokenProvider tokenProvider;
 
-        public APIProjectDataService(HttpClient httpClient, IAccessTokenProvider tokenProvider)
+        public APIProjectDataService(HttpClient httpClient)
         {
             this.httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
-            this.tokenProvider = tokenProvider;
         }
 
 

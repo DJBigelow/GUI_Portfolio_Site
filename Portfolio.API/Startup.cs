@@ -71,7 +71,7 @@ namespace Portfolio.Shared
 
             app.UseCors("Open");
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             //app.UseAuthorization();
 
             app.UseAuthorization();
