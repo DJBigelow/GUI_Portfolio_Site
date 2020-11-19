@@ -38,16 +38,16 @@ namespace Portfolio.Shared
             });
 
 
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            //}).AddJwtBearer(options => 
-            //{
-            //    options.Authority = Configuration["Auth0:Authority"];
-            //    options.Audience = Configuration["Auth0:ApiIdentifier"];
-            //});
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["Auth0:Authority"];
+                options.Audience = Configuration["Auth0:ApiIdentifier"];
+            });
 
 
             services.AddSwaggerGen(options =>
@@ -72,8 +72,6 @@ namespace Portfolio.Shared
             app.UseCors("Open");
 
             app.UseAuthentication();
-            //app.UseAuthorization();
-
             app.UseAuthorization();
 
 
