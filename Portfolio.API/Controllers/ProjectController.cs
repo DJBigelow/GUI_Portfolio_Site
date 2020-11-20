@@ -30,6 +30,10 @@ namespace Portfolio.Shared.Controllers
 
             return NoContent();
         }
+        
+        [Authorize]
+        [HttpGet("tokenTest")]
+        public string TokenTest() => "you authenticated!";
 
 
         //[Authorize]
