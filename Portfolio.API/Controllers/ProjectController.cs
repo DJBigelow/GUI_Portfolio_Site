@@ -22,7 +22,7 @@ namespace Portfolio.Shared.Controllers
             this.repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProject([FromBody] Project project)
         {
