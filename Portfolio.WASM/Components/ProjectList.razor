@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <td>Title</td>
-            <td>Completion Date</td>
+            @*<td>Completion Date</td>*@
         </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
             {
                 <tr>
                     <td> <a href="@($"projects/detail/{project.Slug}")">@project.Title</a> </td>
-                    <td>@project.CompletionDate.ToString("MMMM dd, yyyy")</td>
+                    @*<td>@project.CompletionDate.ToString("MMMM dd, yyyy")</td>*@
                 </tr>
             }
         }

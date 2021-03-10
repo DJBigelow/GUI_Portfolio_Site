@@ -1,8 +1,8 @@
 ﻿@using Portfolio.WASM.Components
 @page "/projects"
 
-<br style="margin-top: 20%;" />
-<br style="margin-top: 20%;" />
+<br style="margin-top: 3%;" />
+@*<br style="margin-top: 20%;" />*@
 
 <h3>Projects</h3>
 
@@ -11,6 +11,9 @@
 
 <CategoryViewSelection />
 
-
-<a href="@("projects/new")">New Project</a>
+<AuthorizeView>
+    <Authorized>
+        <a href="@("projects/new")">New Project</a>
+    </Authorized>
+</AuthorizeView>
 
